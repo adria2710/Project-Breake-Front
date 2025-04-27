@@ -1,0 +1,141 @@
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #fff;
+    color: #111;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 25px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .navbar-logo a {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #111;
+    text-decoration: none;
+  }
+  
+  .navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .navbar-links a {
+    text-decoration: none;
+    color: #111;
+    font-weight: 500;
+  }
+  
+  /* Dropdown */
+  .dropdown {
+    position: relative;
+  }
+  
+  .dropdown-toggle {
+    cursor: pointer;
+    font-weight: 500;
+    color: #111;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .dropdown-toggle::after {
+    content: "▾"; 
+    font-size: 0.6rem;
+    color: #111;
+    transition: transform 0.2s ease;
+  }
+  
+  .dropdown:hover .dropdown-toggle::after {
+    transform: rotate(180deg);
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 160px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+    display: none;
+    z-index: 10;
+    border-radius: 6px;
+    flex-direction: column;
+  }
+  
+  .dropdown-menu a {
+    padding: 10px 16px;
+    color: #111;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .dropdown-menu a:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .dropdown:hover .dropdown-menu {
+    display: flex;
+  }
+  
+  .logout-button {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  @media (max-width: 768px) {
+    .navbar-links {
+      display: none;
+      flex-direction: column;
+      background-color: #fff;
+      position: absolute;
+      top: 60px;
+      right: 0;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 200px;
+    }
+  
+    .navbar-links.active {
+      display: flex;
+    }
+  
+    .menu-toggle {
+        display: none;
+        font-size: 1.8rem;
+        cursor: pointer;
+        z-index: 1100; 
+        position: relative; 
+      }
+  
+    .dropdown-menu {
+      position: static;
+      box-shadow: none;
+      padding: 0;
+      border-radius: 0;
+      background-color: transparent;
+    }
+  
+    .dropdown-menu a {
+      padding: 10px 0;
+    }
+  }
+  
