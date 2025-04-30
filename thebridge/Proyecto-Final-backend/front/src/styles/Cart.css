@@ -86,7 +86,7 @@
   .back-button:hover {
     text-decoration: underline;
   }
-  
+    /*media*/
   @media (max-width: 600px) {
     .cart-controls {
       flex-direction: row;
