@@ -5,7 +5,10 @@ require('dotenv').config();
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: "https://lively-cannoli-0689ff.netlify.app"
+}));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
