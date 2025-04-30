@@ -12,9 +12,9 @@ const colorMap = {
   gris: "#cccccc",
   beige: "#f5f5dc",
   marrón: "#8B4513",
-  amarillo: "#ffff00",amarilla: "#ffff00",
+  amarillo: "#ffff00",
   rosa: "#ff0080",
-  naranja :"#ff8000",
+  naranja: "#ff8000",
 };
 
 const ProductDetail = () => {
@@ -25,7 +25,7 @@ const ProductDetail = () => {
   const { addToCart } = useContext(CartContext);
 
   useEffect(() => {
-    fetch(`http://localhost:4000/api/products/${id}`)
+    fetch(`${import.meta.env.VITE_API}/api/products/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setProduct(data);
@@ -77,7 +77,7 @@ const ProductDetail = () => {
             <label><strong>Talla:</strong></label>
             <select value={selectedSize} onChange={(e) => setSelectedSize(e.target.value)}>
               {selectedVariant.sizes.map((size) => (
-                <option key={size}>{size}</option>
+                <option key={size} value={size}>{size}</option>
               ))}
             </select>
           </div>
@@ -91,10 +91,15 @@ const ProductDetail = () => {
           className="add-to-cart"
           onClick={() =>
             addToCart({
-              ...product,
-              selectedColor: selectedVariant.color,
-              selectedSize,
+              _id: product._id,
+              title: product.title,
+              price: product.price,
               image: selectedVariant.image,
+              variant: {
+                color: selectedVariant.color,
+                size: selectedSize,
+              },
+              quantity: 1,
             })
           }
         >

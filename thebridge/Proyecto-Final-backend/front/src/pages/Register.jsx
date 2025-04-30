@@ -1,20 +1,21 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/Register.css";
 
 function Register() {
   const [form, setForm] = useState({
     name: "",
     email: "",
-    password: ""
+    password: "",
   });
 
   const [msg, setMsg] = useState(null);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setForm({
       ...form,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -22,12 +23,12 @@ function Register() {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:4000/api/auth/register", {
+      const res = await fetch(`${import.meta.env.VITE_API}/api/auth/register`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(form)
+        body: JSON.stringify(form),
       });
 
       const data = await res.json();
@@ -35,10 +36,9 @@ function Register() {
       if (res.ok) {
         setMsg("✅ Registro exitoso. Redirigiendo...");
         setTimeout(() => {
-          window.location.href = "/login";
+          navigate("/login");
         }, 1500);
-      }
-      else {
+      } else {
         setMsg("❌ " + (data.msg || "Error al registrar"));
       }
     } catch (err) {

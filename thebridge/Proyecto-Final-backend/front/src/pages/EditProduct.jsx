@@ -22,13 +22,13 @@ const EditProduct = () => {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:4000/api/products/${id}`)
+    fetch(`${import.meta.env.VITE_API}/api/products/${id}`)
       .then((res) => res.json())
       .then((data) => {
         const transformedVariants = data.variants.map((v) => ({
           ...v,
           sizes: v.sizes?.join(",") || "",
-          image: null 
+          image: null,
         }));
         setFormData({ ...data, variants: transformedVariants });
         setLoading(false);
@@ -92,7 +92,7 @@ const EditProduct = () => {
     });
 
     try {
-      const res = await fetch(`http://localhost:4000/api/products/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API}/api/products/${id}`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${token}`,

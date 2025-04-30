@@ -87,7 +87,7 @@ const CreateProductForm = () => {
     });
 
     try {
-      const res = await fetch("http://localhost:4000/api/products", {
+      const res = await fetch(`${import.meta.env.VITE_API}/api/products`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

@@ -17,7 +17,7 @@ const CategoryPage = ({ mostrarTodo = false }) => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:4000/api/products")
+    fetch(`${import.meta.env.VITE_API}/api/products`)
       .then((res) => res.json())
       .then((data) => {
         const filtrados = mostrarTodo
@@ -43,7 +43,7 @@ const CategoryPage = ({ mostrarTodo = false }) => {
     const token = localStorage.getItem("token");
 
     try {
-      const res = await fetch(`http://localhost:4000/api/products/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API}/api/products/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,

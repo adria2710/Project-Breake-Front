@@ -63,11 +63,11 @@ const Cart = () => {
     const token = localStorage.getItem("token");
 
     try {
-      const res = await fetch("http://localhost:4000/api/orders", {
+      const res = await fetch(`${import.meta.env.VITE_API}/api/orders`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`, // ← corregido
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ productos: cart, total }),
       });

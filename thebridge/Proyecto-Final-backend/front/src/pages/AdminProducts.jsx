@@ -5,7 +5,7 @@ const AdminProducts = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:4000/api/products")
+        fetch(`${import.meta.env.VITE_API}/api/products`)
             .then((res) => res.json())
             .then((data) => setProducts(data))
             .catch((err) => console.error("Error cargando productos:", err));
@@ -18,7 +18,7 @@ const AdminProducts = () => {
         const token = localStorage.getItem("token");
 
         try {
-            const res = await fetch(`http://localhost:4000/api/products/${id}`, {
+            const res = await fetch(`${import.meta.env.VITE_API}/api/products/${id}`, {
                 method: "DELETE",
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -32,7 +32,7 @@ const AdminProducts = () => {
                 alert("Error al eliminar producto");
             }
         } catch (err) {
-            console.error(err);
+            console.error("Error al eliminar:", err);
             alert("Error del servidor");
         }
     };
@@ -43,7 +43,7 @@ const AdminProducts = () => {
             <ul>
                 {products.map((product) => (
                     <li key={product._id}>
-                        <strong>{product.title}</strong> — {product.price}€
+                        <strong>{product.title}</strong> — {product.price} €
                         {" | "}
                         <Link to={`/editar-producto/${product._id}`}>Editar</Link>
                         {" | "}

@@ -9,7 +9,7 @@ const ProductList = () => {
   const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
-    fetch("http://localhost:4000/api/products")
+    fetch(`${import.meta.env.VITE_API}/api/products`)
       .then((res) => res.json())
       .then((data) => setProducts(data))
       .catch((err) => console.error("Error cargando productos:", err));
@@ -26,7 +26,7 @@ const ProductList = () => {
     const token = localStorage.getItem("token");
 
     try {
-      const res = await fetch(`http://localhost:4000/api/products/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API}/api/products/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
