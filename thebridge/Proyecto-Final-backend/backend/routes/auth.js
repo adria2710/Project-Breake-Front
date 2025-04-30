@@ -22,7 +22,7 @@ router.post('/create-admin', async (req, res) => {
     });
 
     await admin.save();
-    res.status(201).json({ msg: 'Admin creado correctamente' });
+    res.status(201).json({ msg: 'Admin creado correctamente!' });
   } catch (err) {
     console.error("❌ Error al crear admin:", err.message);
     res.status(500).json({ msg: 'Error al crear admin' });
